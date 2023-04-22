@@ -1,0 +1,57 @@
+---
+# YAML documents begin with the document separator ---
+- name: Download ALC Assets
+  hosts: darwin
+  connection: local
+  vars_files: defaults/main.yaml
+  vars:
+    pathlink: '{{ nextlink | urlsplit("path") }}'
+    destlink: '{{ VAULT }}'
+    downlink: '{{ nextlink | urlsplit("hostname") }}{{ pathlink }}{{ file }}'
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: Discover what needs to be downloaded
+      tags: discover
+      block:
+        - name: Run exists.rb
+          ansible.builtin.script:
+            cmd: exists.rb {{ VAULT }} {{ URL }}
+
+    - name: Gather the WordPress users
+      tags: download
+      block:
+        - name: Create Missing Directories
+          ansible.builtin.file:
+            path: '{{ destlink }}{{ pathlink }}'
+            state: directory
+            mode: '0755'
+
+        - name: Download ALC Files
+          ansible.builtin.get_url:
+            url: '{{ URL }}/{{ downlink }}'
+            dest: '{{ destlink }}{{ pathlink }}'
+            mode: '0644'
+          register: result
+          notify:
+            - 'Log Successful Downloads'
+            - 'Log Failed Downloads'
+
+  handlers:
+    - name: Log Successful Downloads
+      ansible.builtin.lineinfile:
+        path: ./logs/succeed.log
+        line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
+        create: true
+        mode: '0644'
+      when: result is succeeded
+
+    - name: Log Failed Downloads
+      ansible.builtin.lineinfile:
+        path: ./logs/fail.log
+        line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
+        create: true
+        mode: '0644'
+      when: result is failed
+# Three dots indicate the end of a YAML document
+...
