@@ -1,6 +1,6 @@
 # ALC
 
-ALC is an Ansible playbook, which together with two Ruby scripts, gathers and downloads all achived PDF's for storage.
+ALC gathers and downloads all achived PDF's for storage.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ Variables declared in a defaults/main.yaml file:
 - VAULT: Location to store files.
 - URL: ALC root domain.
 
-```ansible
+```console
 - name: Discover what needs to be downloaded
   ansible.builtin.script:
     cmd: exists.rb {{ VAULT }} {{ URL }}
