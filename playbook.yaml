@@ -29,29 +29,25 @@
 
         - name: Download ALC Files
           ansible.builtin.get_url:
-            url: '{{ URL }}/{{ downlink }}'
+            url: '{{ SHORT }}{{ downlink }}'
             dest: '{{ destlink }}{{ pathlink }}'
             mode: '0644'
           register: result
-          notify:
-            - 'Log Successful Downloads'
-            - 'Log Failed Downloads'
 
-  handlers:
-    - name: Log Successful Downloads
-      ansible.builtin.lineinfile:
-        path: ./logs/succeed.log
-        line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
-        create: true
-        mode: '0644'
-      when: result is succeeded
+        - name: Log Successful Downloads
+          ansible.builtin.lineinfile:
+            path: ./logs/succeed.log
+            line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
+            create: true
+            mode: '0644'
+          when: result is succeeded
 
-    - name: Log Failed Downloads
-      ansible.builtin.lineinfile:
-        path: ./logs/fail.log
-        line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
-        create: true
-        mode: '0644'
-      when: result is failed
+        - name: Log Failed Downloads
+          ansible.builtin.lineinfile:
+            path: ./logs/fail.log
+            line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
+            create: true
+            mode: '0644'
+          when: result is failed
 # Three dots indicate the end of a YAML document
 ...

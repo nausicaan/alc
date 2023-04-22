@@ -9,7 +9,7 @@ arguments = ARGV
 @missing = ""
 @located = ""
 
-l = "results/sot.txt" # file contaiing the complete list of assets. sot = source of truth
+l = "results/sot.txt"     # file contaiing the complete list of assets. sot = source of truth
 e = File.readlines(l)
 
 def write_file(name, urls)
@@ -19,9 +19,9 @@ def write_file(name, urls)
 end
 
 def test_reality(slug)
-  if File.file?("#{@vault}#{slug}")
-    @located << "#{@url}#{slug}\n"
-  else @missing << "#{@url}#{slug}\n"
+  if File.file?("#{@vault}/#{slug}")
+    @located << "#{@url}/#{slug}\n"
+  else @missing << "#{@url}/#{slug}\n"
   end
 end
 

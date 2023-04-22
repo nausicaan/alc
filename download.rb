@@ -23,7 +23,7 @@ e.each do |line|
   tolerate = finds + 1
   dumpty = line.split('/', tolerate)
   humpty = jenja(finds, dumpty)
-  humpty.chomp
-  dumpty[finds].chomp
+  humpty.chomp!
+  dumpty[finds].chomp!
   $stdout.print %x[ansible-playbook playbook.yaml --tags=download --extra-vars "nextlink='#{humpty}' file='#{dumpty[finds]}'"]
 end
