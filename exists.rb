@@ -9,7 +9,7 @@ arguments = ARGV
 @missing = ""
 @located = ""
 
-l = "prompts/sot.txt"     # file contaiing the complete list of assets. sot = source of truth
+l = "prompts/sot.txt" # file contaiing the complete list of assets. sot = source of truth
 e = File.readlines(l)
 
 def write_file(name, urls)
