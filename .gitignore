@@ -8,6 +8,7 @@
 # Dependency directories
 defaults/
 logs/
+prompts/
 results/
 test/
 vendor/

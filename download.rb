@@ -5,7 +5,7 @@ $stdout.sync = true
 
 $stdout.print %x[ansible-playbook playbook.yaml --tags=discover]
 
-l = "results/missing.txt"
+l = "prompts/missing.txt"
 e = File.readlines(l)
 
 def jenja(finds, dumpty)
