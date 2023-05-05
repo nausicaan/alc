@@ -27,3 +27,9 @@ e.each do |line|
   dumpty[finds].chomp!
   $stdout.print %x[ansible-playbook playbook.yaml --tags=download --extra-vars "nextlink='#{humpty}' file='#{dumpty[finds]}'"]
 end
+
+transfer = File.zero?("logs/succeed.txt")
+
+if transfer == false
+  $stdout.print %x[mc cp --recursive ~/Documents/alc/files/assets/alc/assets/ alc/assets/]
+end

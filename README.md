@@ -6,8 +6,10 @@ ALC gathers and downloads all achived PDF's for storage.
 
 Variables declared in a defaults/main.yaml file:
 
-- VAULT: Location to store files.
-- URL: ALC root domain.
+- SOT: Location of your *source of truth* file
+- SHORT: https://
+- VAULT: Location to store files
+- URL: ALC root domain
 
 ```console
 - name: Discover what needs to be downloaded
