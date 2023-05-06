@@ -36,7 +36,7 @@
 
         - name: Record Successful Downloads
           ansible.builtin.lineinfile:
-            path: ./logs/succeed.txt
+            path: ./results/succeed.txt
             line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
             create: true
             mode: '0644'
@@ -44,7 +44,7 @@
 
         - name: Record Failed Downloads
           ansible.builtin.lineinfile:
-            path: ./logs/fail.txt
+            path: ./results/fail.txt
             line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
             create: true
             mode: '0644'

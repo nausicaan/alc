@@ -13,13 +13,13 @@ sot = arguments[2]
 l = "#{sot}" # file contaiing the complete list of assets. sot = source of truth
 e = File.readlines(l)
 
-def write_file(name, urls)
-  open("prompts/#{name}", 'w') do |f|
+def scribble(name, urls)
+  open("sources/#{name}", 'w') do |f|
     f.print urls
   end
 end
 
-def test_reality(slug)
+def existence(slug)
   if File.file?("#{@vault}/#{slug}")
     @located << "#{@url}/#{slug}\n"
   else @missing << "#{@url}/#{slug}\n"
@@ -29,15 +29,15 @@ end
 e.each do |line|
   if "#{line}".include? "http://"
     line[0..24] = ""
-    test_reality(line.chomp)
+    existence(line.chomp)
   else
     line[0..25] = ""
-    test_reality(line.chomp)
+    existence(line.chomp)
   end
 end
 
 @missing.chomp!
 @located.chomp!
 
-write_file("missing.txt", @missing)
-write_file("located.txt", @located)
+scribble("missing.txt", @missing)
+scribble("located.txt", @located)
