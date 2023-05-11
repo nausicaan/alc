@@ -34,7 +34,9 @@ if mirage
   y = "results/succeed.txt"
   z = File.readlines(y)
   z.each do |line|
-    line[0..44] = ""
-    $stdout.print %x[mc cp --recursive ~/Documents/alc/files/assets/alc/assets/#{line} alc/assets/#{line}]
+    line.chomp!
+    line[0..43] = ""
+    $stdout.print %x[mc cp --recursive ~/Documents/alc/files/assets/alc/assets/#{line} alc/assets/#{line[0..86]}]
+    # $stdout.puts "mc cp --recursive ~/Documents/alc/files/assets/alc/assets/#{line} alc/assets/#{line[0..86]}"
   end
 end

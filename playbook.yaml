@@ -18,7 +18,7 @@
           ansible.builtin.script:
             cmd: exists.rb {{ VAULT }} {{ URL }} {{ SOT }}
 
-    - name: Proceed to download the missing assets
+    - name: Download the missing assets
       tags: download
       block:
         - name: Create Missing Directories
