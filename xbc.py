@@ -57,6 +57,8 @@ def edge_cases(route):
     global urls
     if u.hyperlink is None:
       continue
+    elif len(str( u.hyperlink.display )) < 100:
+      continue
     else:
       urls = urls + str( u.hyperlink.display ) + "\n"
 
@@ -75,8 +77,8 @@ if __name__ == "__main__":
         else:
           edge_cases(fpath+y+folder+r+y+".xlsx")
 
-    for old, new in REPLACEMENTS:
-      urls = urls.replace(old, new)
+  for old, new in REPLACEMENTS:
+    urls = urls.replace(old, new)
   
   f = open("sources/nsot.txt", "w")
   f.write(urls)
