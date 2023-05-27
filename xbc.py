@@ -18,7 +18,7 @@ home_dir = Path.home()
 home_dir_str = str( home_dir )
 regions = ("interior-","island-","kootenays-", "north-", "okanagan-", "south_coast-")
 years = ("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016")
-fpath = home_dir_str + "/Documents/alc/excel_files/"
+fpath = home_dir_str + "/Documents/alc/latest-alc-excels/"
 folder = "-decision-minutes/"
 urls = ""
 
