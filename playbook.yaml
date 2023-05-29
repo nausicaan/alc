@@ -1,5 +1,4 @@
 ---
-# YAML documents begin with the document separator ---
 - name: Download ALC Assets
   hosts: darwin
   connection: local
@@ -49,5 +48,4 @@
             create: true
             mode: '0644'
           when: result is failed
-# Three dots indicate the end of a YAML document
 ...

@@ -14,7 +14,7 @@ Variables declared in a defaults/main.yaml file:
 ```console
 - name: Discover what needs to be downloaded
   ansible.builtin.script:
-    cmd: exists.rb {{ VAULT }} {{ URL }}
+  cmd: exists.rb {{ VAULT }} {{ URL }} {{ SOT }}
 ```
 
 ## Run
@@ -34,7 +34,7 @@ TASK [Run exists.rb] ***********************************************************
 changed: [127.0.0.1]
 
 PLAY RECAP *********************************************************************
-127.0.0.1                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+127.0.0.1 : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 ## License
