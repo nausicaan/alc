@@ -14,8 +14,6 @@ REPLACEMENTS = [
     ("N/A\n", "")
 ]
 
-# home_dir = Path.home()
-# home_dir_str = str(home_dir)
 home_dir = str(Path.home())
 regions = ("interior-", "island-", "kootenays-", "north-", "okanagan-", "south_coast-")
 years = ("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016")
@@ -42,22 +40,22 @@ def edge_cases(route):
     for u in sheet['F'][1:]:
         if u.value is None:
             continue
-        [(_, display)] = [p for p in u.hyperlink if 'display' in p]
-        [(_, ref)] = [p for p in u.hyperlink if 'ref' in p]
-        location = None
-        tooltip = None
-        id: object
-        [(_, id)] = [p for p in u.hyperlink if 'id' in p]
-        target = None
+            [(_, display)] = [p for p in u.hyperlink if 'display' in p]
+            [(_, ref)] = [p for p in u.hyperlink if 'ref' in p]
+            location = None
+            tooltip = None
+            wid: object
+            [(_, wid)] = [p for p in u.hyperlink if 'id' in p]
+            target = None
 
-        if "DownloadAsset" in display:
-            u.hyperlink = Hyperlink(
-                display=display,
-                ref=ref,
-                location=location,
-                tooltip=tooltip,
-                id=id,
-                target=target)
+            if "DownloadAsset" in display:
+                u.hyperlink = Hyperlink(
+                    display=display,
+                    ref=ref,
+                    location=location,
+                    tooltip=tooltip,
+                    id=wid,
+                    target=target)
         global urls
         if u.hyperlink is None:
             continue
@@ -78,8 +76,10 @@ if __name__ == "__main__":
         else:
             for r in regions:
                 if r == "south_coast-" and y == "2016":
+                    print("yes")
                     edge_cases(fpath + y + folder + "south-coast-2016.xlsx")
                 else:
+                    print("no")
                     edge_cases(fpath + y + folder + r + y + ".xlsx")
 
     for old, new in REPLACEMENTS:
