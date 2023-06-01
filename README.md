@@ -1,6 +1,6 @@
 # ALC
 
-ALC gathers and downloads all achived PDF's for storage.
+ALC gathers and downloads all achived Agricultural Land Commission PDF's for storage.
 
 ## Prerequisites
 
@@ -8,8 +8,9 @@ Variables declared in a defaults/main.yaml file:
 
 - SOT: Location of your *source of truth* file
 - SHORT: https://
-- VAULT: Location to store files
+- VAULT: Location to store downloaded files
 - URL: ALC root domain
+- TEMP: Location of files created for temporary use
 
 ```console
 - name: Discover what needs to be downloaded
