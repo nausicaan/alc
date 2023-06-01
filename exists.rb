@@ -10,8 +10,7 @@ sot = arguments[2]
 @missing = ""
 @located = ""
 
-l = "#{sot}" # file contaiing the complete list of assets. sot = source of truth
-e = File.readlines(l)
+e = File.readlines("#{sot}")  # file contaiing the complete list of assets. sot = source of truth
 
 def scribble(name, urls)
   open("sources/#{name}", 'w') do |f|

@@ -5,8 +5,7 @@ $stdout.sync = true
 
 $stdout.print %x[ansible-playbook playbook.yaml --tags=discover]
 
-l = "sources/missing.txt"
-e = File.readlines(l)
+e = File.readlines("sources/missing.txt")
 
 def jenja()
   iterate = 0
@@ -35,8 +34,7 @@ end
 mirage = File.exist?("results/succeed.txt")
 
 if mirage
-  y = "results/succeed.txt"
-  z = File.readlines(y)
+  z = File.readlines("results/succeed.txt")
   z.each do |line|
     isolate("#{line}")
     line.chomp!
