@@ -43,3 +43,5 @@ if mirage
     $stdout.print %x[mc cp --recursive ~/Documents/alc/files/assets/alc/assets/#{line} alc/assets/#{@humpty}]
   end
 end
+
+$stdout.print %x[ansible-playbook playbook.yaml --tags=clean]

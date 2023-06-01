@@ -54,4 +54,11 @@
             create: true
             mode: '0644'
           when: result is failed
+    - name: Remove unnecessary files
+      tags: clean
+      block:
+        - name: Delete extra text files
+          ansible.builtin.command: rm {{ JUNK }}tsot.txt {{ JUNK }}nsot.txt {{ JUNK }}located.txt {{ JUNK }}missing.txt
+          register: scrap
+          changed_when: scrap.rc != 0
 ...
