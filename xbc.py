@@ -17,7 +17,7 @@ REPLACEMENTS = [
 home_dir = str(Path.home())
 regions = ("interior-", "island-", "kootenays-", "north-", "okanagan-", "south_coast-")
 years = ("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016")
-fpath = home_dir + "/Documents/alc/latest-alc-excels/"
+fpath = home_dir + "/Documents/alc/files/spreadsheets/"
 folder = "-decision-minutes/"
 urls = ""
 

@@ -10,6 +10,21 @@
   gather_facts: false
   ignore_errors: true
   tasks:
+    - name: Grab the latest set of Excel files
+      tags: update
+      block:
+        - name: Create the Directory
+          ansible.builtin.file:
+            path: '{{ VAULT }}/spreadsheets/{{ dir }}'
+            state: directory
+            mode: '0755'
+
+        - name: Download ALC spreadsheets
+          ansible.builtin.get_url:
+            url: '{{ excel }}'
+            dest: '{{ VAULT }}/spreadsheets/{{ dir }}'
+            mode: '0644'
+
     - name: Discover what needs to be downloaded
       tags: discover
       block:
@@ -54,6 +69,7 @@
             create: true
             mode: '0644'
           when: result is failed
+    
     - name: Remove unnecessary files
       tags: clean
       block:

@@ -2,6 +2,15 @@
 $stdin.flush
 $stdout.flush
 $stdout.sync = true
+argument = ARGV
+
+if argument[0] == "-d"
+  x = File.readlines("sources/sheets.txt")
+  x.each do |line|
+    folder = line[109..129]
+    $stdout.print %x[ansible-playbook playbook.yaml --tags=update --extra-vars "excel='#{line}' dir='#{folder}'"]
+  end
+end
 
 $stdout.print %x[ansible-playbook playbook.yaml --tags=discover]
 
