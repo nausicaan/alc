@@ -76,10 +76,8 @@ if __name__ == "__main__":
         else:
             for r in regions:
                 if r == "south_coast-" and y == "2016":
-                    print("yes")
                     edge_cases(fpath + y + folder + "south-coast-2016.xlsx")
                 else:
-                    print("no")
                     edge_cases(fpath + y + folder + r + y + ".xlsx")
 
     for old, new in REPLACEMENTS:
