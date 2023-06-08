@@ -2,7 +2,6 @@
 $stdin.flush
 $stdout.flush
 $stdout.sync = true
-# argument = ARGV
 
 f = File.open("sources/tsot.txt", "w")
 g = File.open("sources/sot.txt", "w")

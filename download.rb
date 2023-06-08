@@ -39,18 +39,3 @@ e.each do |line|
   isolate("#{line}")
   $stdout.print %x[ansible-playbook playbook.yaml --tags=download --extra-vars "nextlink='#{@humpty}' file='#{@dumpty[@finds]}'"]
 end
-
-mirage = File.exist?("results/succeed.txt")
-
-if mirage
-  z = File.readlines("results/succeed.txt")
-  z.each do |line|
-    isolate("#{line}")
-    line.chomp!
-    line[0..43] = ""
-    @humpty[0..43] = ""
-    $stdout.print %x[mc cp --recursive ~/Documents/alc/files/assets/alc/assets/#{line} alc/assets/#{@humpty}]
-  end
-end
-
-$stdout.print %x[ansible-playbook playbook.yaml --tags=clean]
