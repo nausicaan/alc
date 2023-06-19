@@ -22,6 +22,7 @@ folder = "-decision-minutes/"
 urls = ""
 
 
+# Gather the urls from hidden columns used in the 2006 -> 2014 editions
 def iterating_column(path, sheet_name, col):
     workbook = load_workbook(path)
     if sheet_name not in workbook.sheetnames:
@@ -34,6 +35,7 @@ def iterating_column(path, sheet_name, col):
         urls = urls + f"{cell.value}" + "\n"
 
 
+# Gather the urls from embeded links used in the 2015 and 2016 editions
 def edge_cases(route):
     workbook = load_workbook(route)
     sheet = workbook["Sheet1"]
@@ -65,6 +67,7 @@ def edge_cases(route):
             urls = urls + str(u.hyperlink.display) + "\n"
 
 
+# Iterate through the spreadsheets chronologically and by region, compensating for the edge cases
 if __name__ == "__main__":
     for y in years:
         if int(y) < 2015:

@@ -4,6 +4,7 @@ $stdout.flush
 $stdout.sync = true
 argument = ARGV
 
+# Download the latest version of the Excel files holding the catalogue of urls
 if argument[0] == "-d"
   x = File.readlines("sources/sheets.txt")
   x.each do |line|
@@ -12,10 +13,12 @@ if argument[0] == "-d"
   end
 end
 
+# Run the discover section of the playbook.yaml
 $stdout.print %x[ansible-playbook playbook.yaml --tags=discover]
 
 e = File.readlines("sources/missing.txt")
 
+# Put together a url minus the https://
 def jenja()
   iterate = 0
   value = ""
@@ -26,6 +29,7 @@ def jenja()
   return value
 end
 
+# Remove extraneous material from the url to arrive at the file name
 def isolate(line)
   @finds = line.count('/')
   tolerate = @finds + 1
