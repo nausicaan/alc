@@ -8,8 +8,8 @@ arguments = ARGV
 @vault = arguments[0]
 @url = arguments[1]
 sot = arguments[2]
-@missing = ""
-@located = ""
+@lost = ""
+@found = ""
 
 e = File.readlines("#{sot}")  # File contaiing the complete list of assets. sot = source of truth
 
@@ -23,12 +23,12 @@ end
 # Test if we already have the file downloaded, and record it appropriately
 def existence(slug)
   if File.file?("#{@vault}/#{slug}")
-    @located << "#{@url}/#{slug}\n"
-  else @missing << "#{@url}/#{slug}\n"
+    @found << "#{@url}/#{slug}\n"
+  else @lost << "#{@url}/#{slug}\n"
   end
 end
 
-# Examine the sot file and classify each url as missing or located
+# Examine the sot file and classify each url as lost or found
 e.each do |line|
   if "#{line}".include? "http://"
     line[0..24] = ""
@@ -39,8 +39,8 @@ e.each do |line|
   end
 end
 
-@missing.chomp!
-@located.chomp!
+@lost.chomp!
+@found.chomp!
 
-scribble("missing.txt", @missing)
-scribble("located.txt", @located)
+scribble("lost.txt", @lost)
+scribble("found.txt", @found)

@@ -16,7 +16,7 @@ end
 # Run the discover section of the playbook.yaml
 $stdout.print %x[ansible-playbook playbook.yaml --tags=discover]
 
-e = File.readlines("sources/missing.txt")
+e = File.readlines("sources/lost.txt")
 
 # Put together a url minus the https://
 def jenja()

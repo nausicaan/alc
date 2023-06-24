@@ -56,7 +56,7 @@
 
         - name: Record Successful Downloads
           ansible.builtin.lineinfile:
-            path: ./results/succeed.txt
+            path: ./results/succeeded.txt
             line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
             create: true
             mode: '0644'
@@ -64,7 +64,7 @@
 
         - name: Record Failed Downloads
           ansible.builtin.lineinfile:
-            path: ./results/fail.txt
+            path: ./results/failed.txt
             line: '{{ URL }}{{ pathlink }}{{ file | trim }}'
             create: true
             mode: '0644'
@@ -74,7 +74,7 @@
       tags: clean
       block:
         - name: Delete extra text files
-          ansible.builtin.command: rm {{ TEMP }}tsot.txt {{ TEMP }}nsot.txt {{ TEMP }}located.txt {{ TEMP }}missing.txt
+          ansible.builtin.command: rm {{ TEMP }}tsot.txt {{ TEMP }}nsot.txt {{ TEMP }}found.txt {{ TEMP }}lost.txt
           register: scrap
           changed_when: scrap.rc != 0
 ...

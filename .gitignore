@@ -10,6 +10,7 @@ defaults/
 logs/
 results/
 sources/
+temp/
 test/
 vendor/
 
