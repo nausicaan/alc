@@ -9,34 +9,24 @@ current = File.readlines("sources/current.txt") # Read the current file containi
 possible = File.readlines("sources/possible.txt") # Read the possible file containing links rendered from excel spreadsheets
 fours = File.readlines("sources/fours.txt") # Read the fours file containing identified 404 errors
 
+def amalgamate(turn, spot)
+  turn.each do |line|
+    spot.print(line)
+  end
+end
+
 # Remove any duplicate entries
 current.uniq!
 possible.uniq!
-fours.uniq!  
+fours.uniq!
 
-# Write content from the current file to the draft file
-current.each do |line|
-  draft.print(line)
-end
-
-# Append the draft file with content from the possible file
-possible.each do |line|
-  draft.print(line)
-end
-
-# Further append the draft file with content from the fours file
-fours.each do |line|
-  draft.print(line)
-end
-
+amalgamate(current, draft)
+amalgamate(possible, draft)
+amalgamate(fours, draft)
 draft.close
 
 # Read the newly compiled draft file
 final = File.readlines("sources/draft.txt")
 final.uniq!  # Remove any duplicate entries
-
-final.each do |line|
-  sot.print(line) # Create the source of truth (sot) file
-end
-
+amalgamate(final, sot)
 sot.close
