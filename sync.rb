@@ -19,5 +19,3 @@ if mirage
     i += 1
   end
 end
-
-$stdout.print %x[ansible-playbook playbook.yaml --tags=clean]

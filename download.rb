@@ -43,3 +43,5 @@ e.each do |line|
   isolate("#{line}")
   $stdout.print %x[ansible-playbook playbook.yaml --tags=download --extra-vars "nextlink='#{@humpty}' file='#{@dumpty[@finds]}'"]
 end
+
+$stdout.print %x[ansible-playbook playbook.yaml --tags=clean]

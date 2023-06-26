@@ -2,36 +2,41 @@
 $stdin.flush
 $stdout.flush
 $stdout.sync = true
+draft = File.open("sources/draft.txt", "w") # Open the draft file for writing
+sot = File.open("sources/sot.txt", "w") # Open the source of truth (sot) file for writing
 
-f = File.open("sources/tsot.txt", "w") # Open the temporary source of truth (tsot) file for writing
-g = File.open("sources/sot.txt", "w") # Open the true source of truth (sot) file for writing
+current = File.readlines("sources/current.txt") # Read the current file containing confirmed links
+possible = File.readlines("sources/possible.txt") # Read the possible file containing links rendered from excel spreadsheets
+fours = File.readlines("sources/fours.txt") # Read the fours file containing identified 404 errors
 
-s1 = File.readlines("sources/csot.txt") # Read the current source of truth (csot) file
-s2 = File.readlines("sources/nsot.txt") # Read the new source of truth (nsot) file
-s3 = File.readlines("sources/404s.txt") # Read the identified 404s file
+# Remove any duplicate entries
+current.uniq!
+possible.uniq!
+fours.uniq!  
 
-s1.uniq!  # Remove any duplicate entries
-s2.uniq!  # Remove any duplicate entries
-s3.uniq!  # Remove any duplicate entries
-
-s1.each do |line|
-  f.print(line) # Append the temporary source of truth (tsot) file
+# Write content from the current file to the draft file
+current.each do |line|
+  draft.print(line)
 end
 
-s2.each do |line|
-  f.print(line) # Further append the temporary source of truth (tsot) file
+# Append the draft file with content from the possible file
+possible.each do |line|
+  draft.print(line)
 end
 
-s3.each do |line|
-  f.print(line) # Further append the 404s file
-end
-f.close
-
-s4 = File.readlines("sources/tsot.txt") # Read the newly created temporary source of truth (tsot) file
-s4.uniq!  # Remove any duplicate entries
-
-s4.each do |line|
-  g.print(line) # Create the source of truth (sot) file
+# Further append the draft file with content from the fours file
+fours.each do |line|
+  draft.print(line)
 end
 
-g.close
+draft.close
+
+# Read the newly compiled draft file
+final = File.readlines("sources/draft.txt")
+final.uniq!  # Remove any duplicate entries
+
+final.each do |line|
+  sot.print(line) # Create the source of truth (sot) file
+end
+
+sot.close

@@ -86,6 +86,6 @@ if __name__ == "__main__":
     for old, new in REPLACEMENTS:
         urls = urls.replace(old, new)
 
-    f = open("sources/nsot.txt", "w")
+    f = open("sources/possible.txt", "w")
     f.write(urls)
     f.close()
