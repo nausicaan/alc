@@ -4,7 +4,7 @@ $stdout.flush
 $stdout.sync = true
 arguments = ARGV
 
-pod = arguments[0] #nginx-7c6c77578d-xwzcv
+pod = arguments[0] # nginx-7c6c77578d-xwzcv
 
 mirage = File.exist?("results/succeeded.txt")
 

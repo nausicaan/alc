@@ -8,6 +8,7 @@ sot = File.open("sources/sot.txt", "w") # Open the source of truth (sot) file fo
 current = File.readlines("sources/current.txt") # Read the current file containing confirmed links
 possible = File.readlines("sources/possible.txt") # Read the possible file containing links rendered from excel spreadsheets
 fours = File.readlines("sources/fours.txt") # Read the fours file containing identified 404 errors
+maps = File.readlines("sources/maps.txt") # Read the maps file containing alr maps
 
 def amalgamate(turn, spot)
   turn.each do |line|
@@ -19,10 +20,12 @@ end
 current.uniq!
 possible.uniq!
 fours.uniq!
+maps.uniq!
 
 amalgamate(current, draft)
 amalgamate(possible, draft)
 amalgamate(fours, draft)
+amalgamate(maps, draft)
 draft.close
 
 # Read the newly compiled draft file
