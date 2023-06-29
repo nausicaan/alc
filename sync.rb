@@ -18,4 +18,5 @@ if mirage
     $stdout.print "\r#{i} files copied"
     i += 1
   end
+  $stdout.puts
 end
