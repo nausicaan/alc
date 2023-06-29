@@ -14,8 +14,8 @@ if mirage
   z.each do |line|
     line.chomp!
     line[0..43] = ""
-    $stdout.print %x[oc cp ~/Documents/alc/files/assets/alc/assets/#{line} cca383-dev/#{pod}:/storage/assets/#{line}]
-    $stdout.puts i
+    %x[oc cp ~/Documents/alc/files/assets/alc/assets/#{line} cca383-dev/#{pod}:/storage/assets/#{line}]
+    $stdout.print "\r#{i} files copied"
     i += 1
   end
 end

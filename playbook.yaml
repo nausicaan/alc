@@ -31,7 +31,7 @@
         - name: Refresh the sot file
           ansible.builtin.script:
             cmd: xbc.py
-        - name: Coallate with previous sot file
+        - name: Coallate with current sot file
           ansible.builtin.script:
             cmd: compile.rb
         - name: Document missing and located files
@@ -74,7 +74,7 @@
       tags: clean
       block:
         - name: Delete extra text files
-          ansible.builtin.command: rm {{ TEMP }}draft.txt {{ TEMP }}possible.txt {{ TEMP }}found.txt {{ TEMP }}lost.txt
+          ansible.builtin.command: rm {{ SOURCES }}draft.txt {{ SOURCES }}possible.txt {{ SOURCES }}found.txt {{ SOURCES }}lost.txt
           register: scrap
           changed_when: scrap.rc != 0
 ...

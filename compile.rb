@@ -2,34 +2,50 @@
 $stdin.flush
 $stdout.flush
 $stdout.sync = true
-draft = File.open("sources/draft.txt", "w") # Open the draft file for writing
-sot = File.open("sources/sot.txt", "w") # Open the source of truth (sot) file for writing
+@folder = "sources/"
+@kaboodle = ""
 
-current = File.readlines("sources/current.txt") # Read the current file containing confirmed links
-possible = File.readlines("sources/possible.txt") # Read the possible file containing links rendered from excel spreadsheets
-fours = File.readlines("sources/fours.txt") # Read the fours file containing identified 404 errors
-maps = File.readlines("sources/maps.txt") # Read the maps file containing alr maps
-
-def amalgamate(turn, spot)
-  turn.each do |line|
-    spot.print(line)
+# Append values to the @kaboodle variable
+def meld(bunch)
+  bunch.each do |line|
+    @kaboodle << line
   end
 end
 
-# Remove any duplicate entries
-current.uniq!
-possible.uniq!
-fours.uniq!
-maps.uniq!
+# Print values to a named file
+def amalgamate(bunch, container)
+  bunch.each do |line|
+    container.print(line)
+  end
+end
 
-amalgamate(current, draft)
-amalgamate(possible, draft)
-amalgamate(fours, draft)
-amalgamate(maps, draft)
+# Open the source of truth (sot) and draft file for writing
+sot = File.open("#{@folder}sot.txt", "w")
+draft = File.open("#{@folder}draft.txt", "w")
+
+# Read all required files
+possible = File.readlines("#{@folder}possible.txt") # Output of the xbc.py program
+current = File.readlines("#{@folder}current.txt")
+fours = File.readlines("#{@folder}fours.txt")
+maps = File.readlines("#{@folder}maps.txt")
+
+# Remove any duplicate entries in the possible variable
+possible.uniq!
+
+# Append everything into one variable
+meld(possible)
+meld(current)
+meld(maps)
+meld(fours)
+
+# Print to a draft file
+draft.print(@kaboodle)
 draft.close
 
 # Read the newly compiled draft file
-final = File.readlines("sources/draft.txt")
-final.uniq!  # Remove any duplicate entries
+final = File.readlines("#{@folder}draft.txt")
+final.uniq!
+
+# Write the filtered values to the sot file
 amalgamate(final, sot)
 sot.close
