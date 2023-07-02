@@ -1,23 +1,16 @@
 #!/usr/bin/env ruby
+load 'common.rb'
 $stdin.flush
 $stdout.flush
 $stdout.sync = true
 arguments = ARGV
 
 # Variables
-@vault = arguments[0]
-@url = arguments[1]
 @lost = ""
 @found = ""
-
+@url = arguments[1]
+@vault = arguments[0]
 e = File.readlines("sources/beta.txt")  # File temporary contaiing the complete list of assets.
-
-# Create new files or overwite existing ones
-def scribble(name, urls)
-  open("sources/#{name}", 'w') do |f|
-    f.print urls
-  end
-end
 
 # Test if we already have the file downloaded, and record it appropriately
 def existence(slug)

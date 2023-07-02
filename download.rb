@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+load 'common.rb'
 $stdin.flush
 $stdout.flush
 $stdout.sync = true
@@ -17,27 +18,6 @@ end
 $stdout.print %x[ansible-playbook playbook.yaml --tags=discover]
 
 e = File.readlines("sources/missing.txt")
-
-# Put together a url minus the https://
-def jenja()
-  iterate = 0
-  value = ""
-  while iterate < @finds
-    value = value + @dumpty[iterate] + "/"
-    iterate += 1
-  end
-  return value
-end
-
-# Remove extraneous material from the url to arrive at the file name
-def isolate(line)
-  @finds = line.count('/')
-  tolerate = @finds + 1
-  @dumpty = line.split('/', tolerate)
-  @humpty = jenja()
-  @humpty.chomp!
-  @dumpty[@finds].chomp!
-end
 
 e.each do |line|
   isolate("#{line}")

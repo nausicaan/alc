@@ -37,9 +37,9 @@
         - name: Document missing and located files
           ansible.builtin.script:
             cmd: exists.rb {{ VAULT }} {{ URL }}
-        - name: Filter out existing files
+        - name: Filter out missing files that exist elsewhere
           ansible.builtin.script:
-            cmd: diff.rb
+            cmd: proof.rb
     - name: Download the missing assets
       tags: download
       block:
