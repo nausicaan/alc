@@ -19,8 +19,8 @@ def amalgamate(bunch, container)
   end
 end
 
-# Open the source of truth (sot) and draft file for writing
-sot = File.open("#{@folder}sot.txt", "w")
+# Open the beta and draft file for writing
+beta = File.open("#{@folder}beta.txt", "w")
 draft = File.open("#{@folder}draft.txt", "w")
 
 # Read all required files
@@ -46,6 +46,6 @@ draft.close
 final = File.readlines("#{@folder}draft.txt")
 final.uniq!
 
-# Write the filtered values to the sot file
-amalgamate(final, sot)
-sot.close
+# Write the filtered values to the beta file
+amalgamate(final, beta)
+beta.close

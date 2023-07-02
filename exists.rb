@@ -7,11 +7,10 @@ arguments = ARGV
 # Variables
 @vault = arguments[0]
 @url = arguments[1]
-sot = arguments[2]
 @lost = ""
 @found = ""
 
-e = File.readlines("#{sot}")  # File contaiing the complete list of assets. sot = source of truth
+e = File.readlines("sources/beta.txt")  # File temporary contaiing the complete list of assets.
 
 # Create new files or overwite existing ones
 def scribble(name, urls)
