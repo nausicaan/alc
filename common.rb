@@ -3,9 +3,14 @@ $stdin.flush
 $stdout.flush
 $stdout.sync = true
 
+# Common variables
+@s = "sources/"
+@r = "results/"
+@t = "temp/"
+
 # Create new files or overwite existing ones
 def scribble(name, urls)
-  open("sources/#{name}", 'w') do |f|
+  open("#{name}", 'w') do |f|
     f.print urls
   end
 end

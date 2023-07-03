@@ -6,11 +6,11 @@ arguments = ARGV
 
 pod = arguments[0] # nginx-7c6c77578d-xwzcv
 
-mirage = File.exist?("results/succeeded.txt")
+mirage = File.exist?("#{@r}succeeded.txt")
 
 if mirage
   i = 1
-  z = File.readlines("results/succeeded.txt")
+  z = File.readlines("#{@r}succeeded.txt")
   z.each do |line|
     line.chomp!
     line[0..43] = ""

@@ -6,10 +6,9 @@ ALC gathers and downloads all achived Agricultural Land Commission PDF's for sto
 
 Variables declared in a defaults/main.yaml file:
 
-- SOT: Location of your *source of truth* file
 - SHORT: https://
-- VAULT: Location to store downloaded files
 - URL: ALC root domain
+- VAULT: Location to store downloaded files
 - TEMP: Location of files created for temporary use
 
 ```console

@@ -10,7 +10,7 @@ arguments = ARGV
 @found = ""
 @url = arguments[1]
 @vault = arguments[0]
-e = File.readlines("sources/beta.txt")  # File temporary contaiing the complete list of assets.
+e = File.readlines("#{@t}beta.txt")  # File temporary contaiing the complete list of assets.
 
 # Test if we already have the file downloaded, and record it appropriately
 def existence(slug)
@@ -34,5 +34,5 @@ end
 @lost.chomp!
 @found.chomp!
 
-scribble("lost.txt", @lost)
-scribble("found.txt", @found)
+scribble("#{@t}lost.txt", @lost)
+scribble("#{@t}found.txt", @found)

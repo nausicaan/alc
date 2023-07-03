@@ -8,12 +8,12 @@ $stdout.sync = true
 @ignore = []
 @unknown = []
 @kaboodle = []
-@lost = File.readlines("sources/lost.txt")
-@found = File.readlines("sources/found.txt")
+@lost = File.readlines("#{@t}lost.txt")
+@found = File.readlines("#{@t}found.txt")
 
 @lost.each do |line|
   isolate("#{line}")
-  grep = %x[grep "#{@dumpty[@finds]}" "sources/current.txt"]
+  grep = %x[grep "#{@dumpty[@finds]}" "#{@s}current.txt"]
   if grep.length > 1
     @gotit.append(grep)
     @ignore.append(line)
@@ -22,11 +22,11 @@ $stdout.sync = true
   end
 end
 
-missing = File.open("sources/missing.txt", "w")
+missing = File.open("#{@s}missing.txt", "w")
 amalgamate(@unknown, missing)
 missing.close
 
-ignore = File.open("results/ignore.txt", "w")
+ignore = File.open("#{@r}ignore.txt", "w")
 amalgamate(@ignore, ignore)
 ignore.close
 
@@ -34,6 +34,6 @@ meld(@found)
 meld(@gotit)
 @kaboodle.uniq!
 
-sot = File.open("sources/sot.txt", "w")
+sot = File.open("#{@s}sot.txt", "w")
 amalgamate(@kaboodle, sot)
 sot.close
