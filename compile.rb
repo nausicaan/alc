@@ -21,7 +21,7 @@ meld(maps)
 meld(fours)
 
 # Print to a draft file
-scribble("#{@t}draft.txt", @kaboodle)
+document("#{@t}draft.txt", @kaboodle)
 
 # Read the newly compiled draft file
 beta = File.readlines("#{@t}draft.txt")
@@ -29,4 +29,4 @@ beta.uniq!
 
 @kaboodle = ""
 meld(beta)
-scribble("#{@t}beta.txt", @kaboodle)
+document("#{@t}beta.txt", @kaboodle)

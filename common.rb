@@ -9,7 +9,7 @@ $stdout.sync = true
 @t = "temp/"
 
 # Create new files or overwite existing ones
-def scribble(name, urls)
+def document(name, urls)
   open("#{name}", 'w') do |f|
     f.print urls
   end
@@ -48,4 +48,16 @@ def isolate(line)
   @humpty = jenja()
   @humpty.chomp!
   @dumpty[@finds].chomp!
+end
+
+# Remove duplicate entries from files
+def unique(read, write)
+  read = File.readlines("#{argument[0]}.txt")
+  read.uniq!
+  write = File.open("#{argument[0]}_filtered.txt", "w")
+
+  read.each do |line|
+    write.puts(line)
+  end
+  write.close
 end

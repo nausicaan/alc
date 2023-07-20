@@ -76,7 +76,7 @@
       tags: clean
       block:
         - name: Delete extra text files
-          ansible.builtin.command: rm {{ TEMPORARY }}beta.txt {{ TEMPORARY }}draft.txt {{ TEMPORARY }}found.txt {{ TEMPORARY }}lost.txt {{ TEMPORARY }}possible.txt
+          ansible.builtin.command: rm {{ TEMPORARY }}beta.txt {{ TEMPORARY }}draft.txt {{ TEMPORARY }}lost.txt {{ TEMPORARY }}possible.txt
           register: scrap
           changed_when: scrap.rc != 0
 ...

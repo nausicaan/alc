@@ -32,7 +32,6 @@ e.each do |line|
 end
 
 @lost.chomp!
-@found.chomp!
 
-scribble("#{@t}lost.txt", @lost)
-scribble("#{@t}found.txt", @found)
+document("#{@t}lost.txt", @lost)
+document("#{@t}found.txt", @found)
