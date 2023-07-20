@@ -2,6 +2,8 @@
 
 ALC gathers and downloads all achived Agricultural Land Commission PDF's for storage.
 
+![ALC](alc.webp)
+
 ## Prerequisites
 
 Variables declared in a defaults/main.yaml file:
